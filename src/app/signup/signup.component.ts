@@ -51,11 +51,11 @@ export class SignupComponent {
     }
     
     this.authService.register(this.signupForm.value).subscribe({
-      next: (response) => {
+      next: (response: any) => {
         this.snackBar.open('Sign up successful!', 'Close', { duration: 5000 });
         this.router.navigate(['/login']);
       },
-      error: (error) => {
+      error: () => {
         this.snackBar.open('Sign up failed. Please try again.', 'Close', { duration: 5000, panelClass: 'error-snackbar' });
       }
     });
