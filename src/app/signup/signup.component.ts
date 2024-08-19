@@ -27,11 +27,7 @@ export class SignupComponent {
     });
   }
 
-  ngOnInit() {
-    this.signupForm.valueChanges.subscribe(x => {
-      console.log(x);
-    })
-  }
+  ngOnInit() { }
 
   toggleHidePassword() {
     this.hidePassword = !this.hidePassword;
