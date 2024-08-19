@@ -5,7 +5,7 @@
     height: 100vh;
 }
 
-.mat-card {
+mat-card {
     max-width: 400px;
     @media screen and (max-width: 500px) {
         padding: 20px;
@@ -13,7 +13,7 @@
     }
 }
 
-.mat-card-title {
+mat-card-title {
     font-size: 24px;
     text-align: center;
     margin-bottom: 20px;
