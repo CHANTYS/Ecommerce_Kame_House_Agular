@@ -14,7 +14,7 @@ export class AuthService {
               private usService: UserStorageService) { }
 
   register(sinunupRequest: any) {
-    return this.httpClient.post(BASIC_URL + 'signu-up', sinunupRequest);
+    return this.httpClient.post(BASIC_URL + 'sign-up', sinunupRequest);
   }
 
   login(userName: string, password: string) {
