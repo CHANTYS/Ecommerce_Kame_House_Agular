@@ -22,6 +22,8 @@ export class LoginComponent {
       email: [undefined, [Validators.required]],
       password: [undefined, [Validators.required]]
     });
+
+    this.loginForm.valueChanges.subscribe(x => console.log(x));
   }
 
   togglePasswordVisibility() {

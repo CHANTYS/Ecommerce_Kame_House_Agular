@@ -7,13 +7,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PostCategoryComponent } from './components/post-category/post-category.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DemoAngularMaterialModule } from '../DemoAngularMaterialModule';
+import { PostProductComponent } from './components/post-product/post-product.component';
 
 
 @NgModule({
   declarations: [
     AdminComponent,
     DashboardComponent,
-    PostCategoryComponent
+    PostCategoryComponent,
+    PostProductComponent
   ],
   imports: [
     CommonModule,
