@@ -23,23 +23,24 @@ export class PostCategoryComponent {
   }
   
   addCategory(): void {
-    if (this.categoryForm.valid) {
-      this.adminService.addCategory(this.categoryForm.value).subscribe({
-        next: (res) => {
-          this.snackBar.open('Category Posted Successfully', 'Close', {
-            duration: 5000,
-          });
+    this.categoryForm.updateValueAndValidity();
 
-          this.router.navigateByUrl('/admin/dashboard');
-        }, 
-        error: (error) => {
-          this.snackBar.open('errors.message', 'Close', {
-            duration: 5000,
-          });
-        }
-      });
-    } else {
-      this.categoryForm.markAllAsTouched();
-    }
+    if (this.categoryForm.valid)
+      return;
+
+    this.adminService.addCategory(this.categoryForm.value).subscribe({
+      next: (res) => {
+        this.snackBar.open('Category Posted Successfully', 'Close', {
+          duration: 5000,
+        });
+
+        this.router.navigateByUrl('/admin/dashboard');
+      }, 
+      error: (error) => {
+        this.snackBar.open('errors.message', 'Close', {
+          duration: 5000,
+        });
+      }
+    });      
   }  
 }

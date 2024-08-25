@@ -14,7 +14,7 @@
                 
                 <mat-form-field appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" placeholder="email" required>
+                    <input matInput type="email" formControlName="email" placeholder="email" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
                     <mat-error *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
                       Please enter a valid email.
                     </mat-error>

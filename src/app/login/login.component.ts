@@ -22,6 +22,8 @@ export class LoginComponent {
       email: [undefined, [Validators.required]],
       password: [undefined, [Validators.required]]
     });
+
+    this.loginForm.valueChanges.subscribe(x => console.log(x));
   }
 
   togglePasswordVisibility() {
@@ -29,6 +31,10 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    this.loginForm.updateValueAndValidity();
+    if (!this.loginForm.valid)
+      return;
+
     const userName = this.loginForm.get("email")!.value;
     const password = this.loginForm.get("password")!.value;
 
@@ -43,6 +49,6 @@ export class LoginComponent {
                       error: () => {
                         this.snackBar.open('Login failed. Please try again.', 'Close', { duration: 5000, panelClass: 'error-snackbar' });
                       }
-                    })
+                    });
   }
 }
