@@ -42,7 +42,7 @@ export class LoginComponent {
                         if (UserStorageService.isAdminLoggedIn())
                           this.router.navigateByUrl('admin/dashboard');
                         else if (UserStorageService.isCustomerLoggedIn())
-                          this.router.navigateByUrl('customer/dashboard');
+                          this.router.navigateByUrl('costumer/dashboard');
                       },
                       error: () => {
                         this.snackBar.open('Login failed. Please try again.', 'Close', { duration: 5000, panelClass: 'error-snackbar' });
