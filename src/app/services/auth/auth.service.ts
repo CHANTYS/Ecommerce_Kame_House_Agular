@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse, HttpResponseBase } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { UserStorageService } from '../storage/user-storage.service';
@@ -17,10 +17,10 @@ export class AuthService {
     return this.httpClient.post(BASIC_URL + 'sign-up', sinunupRequest);
   }
 
-  login(userName: string, password: string) {
-    const body = { userName, password };
+  login(username: string, password: string) {
+    const body = { username, password };
 
-    return this.httpClient.post(BASIC_URL + 'authenticate', body)
+    return this.httpClient.post(BASIC_URL + 'authenticate', body, { observe: 'response' })
                           .pipe(map((res) => {
                             const httpRes = res as HttpResponse<unknown>;
                             const token = httpRes.headers.get('authorization')?.substring(7);
