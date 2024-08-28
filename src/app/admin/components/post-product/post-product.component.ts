@@ -55,12 +55,12 @@ export class PostProductComponent {
   addProduct() {
     this.productForm.updateValueAndValidity();
 
-    if (this.productForm.valid)
+    if (!this.productForm.valid)
       return;
     
     const formData = new FormData();
     formData.append('img', this.selectedFile!);
-    formData.append('categoryId', this.productForm.get('categoryId')!.value);
+    formData.append('categoryId', this.productForm.get('category')!.value);
     formData.append('name', this.productForm.get('name')!.value);
     formData.append('description', this.productForm.get('description')!.value);
     formData.append('price', this.productForm.get('price')!.value);

@@ -25,7 +25,7 @@ export class PostCategoryComponent {
   addCategory(): void {
     this.categoryForm.updateValueAndValidity();
 
-    if (this.categoryForm.valid)
+    if (!this.categoryForm.valid)
       return;
 
     this.adminService.addCategory(this.categoryForm.value).subscribe({
@@ -37,7 +37,7 @@ export class PostCategoryComponent {
         this.router.navigateByUrl('/admin/dashboard');
       }, 
       error: (error) => {
-        this.snackBar.open('errors.message', 'Close', {
+        this.snackBar.open(error.message, 'Close', {
           duration: 5000,
         });
       }
