@@ -23,7 +23,7 @@ export class AuthService {
     return this.httpClient.post(BASIC_URL + 'authenticate', body, { observe: 'response' })
                           .pipe(map((res) => {
                             const httpRes = res as HttpResponse<unknown>;
-                            const token = httpRes.headers.get('authorization')?.substring(7);
+                            const token = httpRes.headers.get('authorization')?.substring(6);
                             const user = httpRes.body;
                             if (token && user) {
                               this.usService.saveToken(token);
