@@ -44,18 +44,17 @@ export class DashboardComponent implements OnInit {
   deleteProduct(productId: number) {
     this.adminService.deleteProduct(productId).subscribe({
       next: (res) => {
-        if (!res.body) {
+        if (!res) {
           this.snackBar.open('Product Deleted Successfully!', 'Close', {
             duration: 5000
           });
 
           this.getAllProducts();
-        } else {
+        } else
           this.snackBar.open(res.message, 'Close', {
             duration: 5000,
             panelClass: 'error-snackbar'
           });
-        }
       }
     });
   }
