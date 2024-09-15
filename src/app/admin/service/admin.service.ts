@@ -13,43 +13,37 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   addCategory(categoryDto: any): Observable<any> {
-    return this.http.post(this.BASIC_URL + 'api/admin/category', categoryDto, 
-      { 
-        headers: this.createAuthorizationHeader()
-      });
+    return this.http.post(this.BASIC_URL + 'api/admin/category', categoryDto, { 
+      headers: this.createAuthorizationHeader()
+    });
   }
 
   getAllCategories(): Observable<any> {
-    return this.http.get(this.BASIC_URL + 'api/admin', 
-      { 
-        headers: this.createAuthorizationHeader()
-      });
+    return this.http.get(this.BASIC_URL + 'api/admin', { 
+      headers: this.createAuthorizationHeader()
+    });
   }
 
   addProduct(productDto:any): Observable<any> {
-    return this.http.post(this.BASIC_URL + 'api/admin/product', productDto, 
-      { 
-        headers: this.createAuthorizationHeader()
-      });
+    return this.http.post(this.BASIC_URL + 'api/admin/product', productDto, { 
+      headers: this.createAuthorizationHeader()
+    });
   }
 
   getAllProducts(): Observable<any> {
-    return this.http.get<Array<any>>(this.BASIC_URL + 'api/admin/products', 
-      { 
-        headers: this.createAuthorizationHeader()
-      });
+    return this.http.get<Array<any>>(this.BASIC_URL + 'api/admin/products', { 
+      headers: this.createAuthorizationHeader()
+    });
   }
 
   getAllProductByName(name: string) {
-    return this.http.get<Array<any>>(this.BASIC_URL + `api/admin/search/${name}`, 
-      {
-        headers: this.createAuthorizationHeader()
-      });
+    return this.http.get<Array<any>>(this.BASIC_URL + `api/admin/search/${name}`, {
+      headers: this.createAuthorizationHeader()
+    });
   }
 
   deleteProduct(productId: number): Observable<any> {
-    return this.http.delete(this.BASIC_URL + `api/admin/product/${productId}`, 
-    { 
+    return this.http.delete(this.BASIC_URL + `api/admin/product/${productId}`, { 
       headers: this.createAuthorizationHeader()
     });
   }

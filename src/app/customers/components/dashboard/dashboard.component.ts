@@ -44,7 +44,13 @@ export class DashboardComponent {
   }
 
   addToCart(productId: number) {
-    
+    this.customerService.addToCart(productId).subscribe({
+      next: res => {
+        this.snackBar.open('Product added to cart Successfully!', 'Close', {
+          duration: 5000
+        });
+      }
+    })
   }
 
   private getAllProducts() {
