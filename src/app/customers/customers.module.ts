@@ -6,12 +6,14 @@ import { CustomersComponent } from './customers.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DemoAngularMaterialModule } from '../DemoAngularMaterialModule';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CartComponent } from './components/cart/cart.component';
 
 
 @NgModule({
   declarations: [
     CustomersComponent,
-    DashboardComponent
+    DashboardComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,
