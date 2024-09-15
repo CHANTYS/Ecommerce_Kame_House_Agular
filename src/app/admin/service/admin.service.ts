@@ -33,10 +33,24 @@ export class AdminService {
   }
 
   getAllProducts(): Observable<any> {
-    return this.http.get(BASIC_URL + 'api/admin/products', 
+    return this.http.get<Array<any>>(BASIC_URL + 'api/admin/products', 
       { 
         headers: this.createAuthorizationHeader()
       });
+  }
+
+  getAllProductByName(name: string) {
+    return this.http.get<Array<any>>(BASIC_URL + `api/admin/search/${name}`, 
+      {
+        headers: this.createAuthorizationHeader()
+      });
+  }
+
+  deleteProduct(productId: number): Observable<any> {
+    return this.http.delete(BASIC_URL + `api/admin/product/${productId}`, 
+    { 
+      headers: this.createAuthorizationHeader()
+    });
   }
   
 
