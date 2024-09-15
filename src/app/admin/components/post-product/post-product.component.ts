@@ -66,7 +66,7 @@ export class PostProductComponent {
     formData.append('price', this.productForm.get('price')!.value);
   
     this.adminService.addProduct(formData).subscribe((res) => {
-      if (res.id != null) {
+      if (res) {
         this.snackBar.open('Product Posted Successfully!', 'Close', {
           duration: 5000
         });
