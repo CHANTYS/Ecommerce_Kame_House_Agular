@@ -12,13 +12,13 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
 
   getAllProducts(): Observable<any> {
-    return this.http.get<Array<any>>(this.BASIC_URL + 'api/admin/products', { 
+    return this.http.get<Array<any>>(this.BASIC_URL + 'api/customer/products', { 
       headers: this.createAuthorizationHeader()
     });
   }
 
   getAllProductByName(name: string) {
-    return this.http.get<Array<any>>(this.BASIC_URL + `api/admin/search/${name}`, {
+    return this.http.get<Array<any>>(this.BASIC_URL + `api/customer/search/${name}`, {
       headers: this.createAuthorizationHeader()
     });
   }
