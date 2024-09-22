@@ -23,7 +23,8 @@ export class SignupComponent {
       name: [undefined, [Validators.required]],
       email: [undefined, [Validators.required]],
       password: [undefined, [Validators.required]],
-      confirmPassword: [undefined, Validators.required]
+      confirmPassword: [undefined, Validators.required],
+      isAdmin: [false]
     });
   }
 
