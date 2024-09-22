@@ -41,7 +41,10 @@
                       Please enter a valid confirm password.
                     </mat-error>
                 </mat-form-field>
-                  
+
+                <mat-checkbox formControlName="isAdmin">Do you want to be an administrator user?</mat-checkbox>
+                
+                <br/>
                 <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid" (click)="onSubmit()">Sign Up</button>
             </form>
         </mat-card-content>

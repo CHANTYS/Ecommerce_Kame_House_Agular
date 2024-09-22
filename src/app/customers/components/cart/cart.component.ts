@@ -28,7 +28,7 @@ export class CartComponent implements OnInit {
       next: (res: any) => {
         this.order = res;
         res.cartItems.forEach((element: any) => {
-          element.processedImg = 'data:image/jpeg;base64,' + element.byteImg;
+          element.processedImg = 'data:image/jpeg;base64, ' + element.byteImg;
           this.cartItems.push(element);
         })
       }
