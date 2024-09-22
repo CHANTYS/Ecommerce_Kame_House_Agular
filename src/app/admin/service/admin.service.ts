@@ -19,7 +19,7 @@ export class AdminService {
   }
 
   getAllCategories(): Observable<any> {
-    return this.http.get(this.BASIC_URL + 'api/admin', { 
+    return this.http.get(this.BASIC_URL + 'api/admin/category', { 
       headers: this.createAuthorizationHeader()
     });
   }
