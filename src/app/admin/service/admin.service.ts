@@ -25,7 +25,7 @@ export class AdminService {
   }
 
   addProduct(productDto:any): Observable<any> {
-    return this.http.post(this.BASIC_URL + 'api/admin/product', productDto, { 
+    return this.http.post(this.BASIC_URL + 'api/admin/products', productDto, { 
       headers: this.createAuthorizationHeader()
     });
   }
