@@ -1,36 +1,30 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DemoAngularMaterialModule } from './DemoAngularMaterialModule';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { SignupComponent } from './signup/signup.component';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { DemoAngularMaterailModule } from './DemoAngularMaterialModule';
+import { LoginComponent } from './auth/auth-components/login/login.component';
+import { SignupComponent } from './auth/auth-components/signup/signup.component';
+import { TrackOrderComponent } from './auth/auth-components/track-order/track-order.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SignupComponent,
     LoginComponent,
-    SignupComponent
+    TrackOrderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    DemoAngularMaterialModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    DemoAngularMaterailModule
   ],
   providers: [],
   bootstrap: [AppComponent]

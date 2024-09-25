@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { UserStorageService } from './services/storage/user-storage.service';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { UserStorageService } from './auth/auth-services/storage-service/user-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -8,26 +8,23 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ECommerceWeb';
+
   isCustomerLoggedIn: boolean = UserStorageService.isCustomerLoggedIn();
   isAdminLoggedIn: boolean = UserStorageService.isAdminLoggedIn();
 
-  constructor(private router: Router) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event.constructor.name === "NavigationEnd") {
         this.isCustomerLoggedIn = UserStorageService.isCustomerLoggedIn();
         this.isAdminLoggedIn = UserStorageService.isAdminLoggedIn();
       }
-    });
-  }
-
-  ngOnInit(): void {
-    if (!this.isCustomerLoggedIn && !this.isAdminLoggedIn) {
-      this.router.navigateByUrl('/login');
-    }
+    })
   }
 
   logout() {
-
+    UserStorageService.signOut();
+    this.router.navigateByUrl('login');
   }
 }
