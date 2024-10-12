@@ -48,11 +48,13 @@ export class CartItemsComponent {
   getCart() {
     this.cartItems = [];
     this.customerService.getCartByUserId().subscribe((res) => {
-      console.log(res);
-      this.productDtos = [...res.productDtos];
-      this.cartItems = res;
-      // this.cartItems = res.cartItems;
-      // this.order = res;
+      if (res) {
+        console.log(res);
+        this.productDtos = [...res.productDtos];
+        this.cartItems = res;
+        // this.cartItems = res.cartItems;
+        // this.order = res;
+      }
     });
   }
 
@@ -68,6 +70,14 @@ export class CartItemsComponent {
     console.log("decrease", productId)
     this.customerService.addMinusOnProduct(productId).subscribe(() => {
       this.snackbar.open('Product quantity decreased.', 'Close', { duration: 5000 });
+      this.getCart();
+    });
+  }
+
+  removeProductToCart(productId: number) {
+    console.log("removeProductToCart", productId)
+    this.customerService.removeProductToCart(productId).subscribe(() => {
+      this.snackbar.open('Product remove to cart.', 'Close', { duration: 5000 });
       this.getCart();
     });
   }

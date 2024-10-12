@@ -1,5 +1,5 @@
 <!-- cart.component.html -->
-<div *ngIf="productDtos.length > 0; else emptyCart">
+<div *ngIf="productDtos?.length > 0">
     <div class="cart-container">
         <div class="cart-item" *ngFor="let item of productDtos">
             <div class="product-info">
@@ -24,6 +24,9 @@
                         </div>
                     </div>
                 </div>
+                <button mat-icon-button class="clear-button" (click)="removeProductToCart(item.id)">
+                    <mat-icon>clear</mat-icon>
+                </button>
             </div>
         </div>
         <div class="total-price">
@@ -61,7 +64,7 @@
     </div>
 </div>
 
-<ng-template #emptyCart>
+<ng-template *ngIf="!productDtos">
     <div class="empty-cart">
         <mat-icon class="icon">remove_shopping_cart</mat-icon>
         <span>Nothing to see here.</span>
