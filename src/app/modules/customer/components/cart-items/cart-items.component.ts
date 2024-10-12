@@ -12,9 +12,10 @@ import { OrderPlaceComponent } from '../order-place/order-place.component';
 })
 export class CartItemsComponent {
 
-  cartItems: any[] = [];
   order: any;
   couponForm!: FormGroup;
+  productDtos = [];
+  cartItems = {} as any;
 
   constructor(private customerService: CustomerService,
     private snackbar: MatSnackBar,
@@ -48,17 +49,15 @@ export class CartItemsComponent {
     this.cartItems = [];
     this.customerService.getCartByUserId().subscribe((res) => {
       console.log(res);
-      res.cartItems.forEach(element => {
-        element.processedImg = 'data:image/jpeg;base64,' + element.returnedImg;
-        this.cartItems.push(element);
-      });
-      this.cartItems = res.cartItems;
-      this.order = res;
+      this.productDtos = [...res.productDtos];
+      this.cartItems = res;
+      // this.cartItems = res.cartItems;
+      // this.order = res;
     });
   }
 
   increaseQuantity(productId: any) {
-    console.log("increase", productId)
+    console.log("increase", productId);
     this.customerService.addPlusOnProduct(productId).subscribe(() => {
       this.snackbar.open('Product quantity increased.', 'Close', { duration: 5000 });
       this.getCart();
