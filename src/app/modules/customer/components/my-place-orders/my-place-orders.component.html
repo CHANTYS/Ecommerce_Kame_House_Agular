@@ -8,9 +8,9 @@
             <mat-cell *matCellDef="let myOrder">{{ myOrder.trackingId }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="amount">
-            <mat-header-cell *matHeaderCellDef style="font-weight: bolder; color: #003973;">Amount</mat-header-cell>
-            <mat-cell *matCellDef="let myOrder" style="font-weight: 600;">{{ myOrder.amount }}</mat-cell>
+        <ng-container matColumnDef="totalAmount">
+            <mat-header-cell *matHeaderCellDef style="font-weight: bolder; color: #003973;">Total Amount</mat-header-cell>
+            <mat-cell *matCellDef="let myOrder" style="font-weight: 600;">{{ myOrder.totalAmount }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="description">

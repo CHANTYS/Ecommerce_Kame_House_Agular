@@ -30,27 +30,29 @@
             </div>
         </div>
         <div class="total-price">
-            Total Amount: {{ cartItems.price | currency }}
+            Total Amount: {{ cartItems.totalAmount | currency }}
         </div>
-        <div class="total-price">
-            Discount: 
-            <!-- {{ order?.discount | currency }} -->
-        </div>
-        <div class="total-price">
-            Amount: 
-            <!-- {{ order?.amount | currency }} -->
-        </div>
-        <!-- *ngIf="order.couponName != null" -->
-        <div class="total-price">
-            Coupon Applied: 
-            <!-- {{ order?.couponName }} -->
+        <div *ngIf="cartItems.couponName">
+            <div class="total-price">
+                Discount: 
+                {{ cartItems.discount | currency }}
+            </div>
+            <div class="total-price">
+                Amount: 
+                {{ cartItems.amount | currency }}
+            </div>
+            <!-- *ngIf="order.couponName != null" -->
+            <div class="total-price">
+                Coupon Applied: 
+                {{ cartItems.couponName }}
+            </div>
         </div>
         <div>
             <button mat-raised-button color="primary" (click)="placeOrder()">Place Order</button>
         </div>
     </div>
 
-    <div class="container" *ngIf="order?.couponName">
+    <div class="container">
         <form [formGroup]="couponForm" (ngSubmit)="applyCoupon()">
 
             <mat-form-field appearance="outline" class="form-field">
