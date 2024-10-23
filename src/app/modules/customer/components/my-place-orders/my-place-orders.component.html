@@ -47,8 +47,8 @@
         </ng-container>
 
         <mat-header-row
-            *matHeaderRowDef="['trackingId', 'amount', 'description',  'address', 'date','status','action']"></mat-header-row>
+            *matHeaderRowDef="['trackingId', 'totalAmount', 'description',  'address', 'date','status','action']"></mat-header-row>
         <mat-row
-            *matRowDef="let myOrder; columns: ['trackingId', 'amount', 'description',  'address', 'date','status','action']"></mat-row>
+            *matRowDef="let myOrder; columns: ['trackingId', 'totalAmount', 'description',  'address', 'date','status','action']"></mat-row>
     </mat-table>
 </ng-container>
