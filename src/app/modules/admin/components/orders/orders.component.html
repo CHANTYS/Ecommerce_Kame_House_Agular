@@ -56,10 +56,10 @@
                 </ng-container>
 
                 <tr mat-header-row
-                    *matHeaderRowDef="['trackingId', 'userName', 'amount', 'description',  'address', 'date','status','action']">
+                    *matHeaderRowDef="['trackingId', 'userName', 'totalAmount', 'description',  'address', 'date','status','action']">
                 </tr>
                 <tr mat-row
-                    *matRowDef="let row; columns: ['trackingId', 'userName', 'amount', 'description',  'address', 'date','status','action']">
+                    *matRowDef="let row; columns: ['trackingId', 'userName', 'totalAmount', 'description',  'address', 'date','status','action']">
                 </tr>
             </table>
         </mat-card-content>
