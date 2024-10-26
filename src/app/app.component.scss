@@ -1,30 +1,38 @@
-.navbar {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 0 16px;
+h1 {
+    padding: 0 1rem;
 }
 
-.navbar-brand {
-    font-size: 20px;
-    font-weight: 600;
-    margin-right: 16px;
+h2 {padding: 1rem;}
+
+mat-toolbar{
+    position:fixed;
+    top:0;
+    z-index: 2;
 }
 
-.spacer {
-    flex: 1;
+mat-sidenav-container {
+    height:100%;
 }
 
-button {
-    color: white;
-    text-transform: uppercase;
-    margin-left: 8px;
-}
+// Move the content down so that it won't be hidden by the toolbar
+mat-sidenav {
+    padding-top: 3.5rem;
+    @media screen and (min-width: 600px) {
+      padding-top: 4rem;
+    }
 
-button.active {
-    font-weight: 600;
-}
+    .entry{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding:0.75rem;
+    }
+  }
 
-.custom-toolbar {
-    background-color: #ff0000;
+// Move the content down so that it won't be hidden by the toolbar
+mat-sidenav-content{
+    padding-top: 3.5rem;
+    @media screen and (min-width: 600px) {
+        padding-top: 4rem;
+    }
 }
