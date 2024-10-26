@@ -20,7 +20,14 @@ export class AppComponent {
         this.isCustomerLoggedIn = UserStorageService.isCustomerLoggedIn();
         this.isAdminLoggedIn = UserStorageService.isAdminLoggedIn();
       }
-    })
+    });
+
+    if (this.isAdminLoggedIn)
+      this.router.navigate(['/admin/dashboard']);
+    else if (this.isCustomerLoggedIn)
+      this.router.navigate(['/customer/dashboard']);
+    else
+      this.router.navigate(['login']);
   }
 
   logout() {

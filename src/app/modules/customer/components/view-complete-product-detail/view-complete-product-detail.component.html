@@ -24,7 +24,7 @@
     <div class="center-container">
         <div *ngFor="let review of reviews" class="review-card">
             <div class="review-image">
-                <img [src]="review.processedImg" *ngIf="review.processedImg" alt="{{ review.description }} Image" class="small-image">
+                <img *ngIf="review.returnedImg" [src]="review.processedImg" alt="{{ review.description }} Image" class="small-image">
             </div>
             <div class="review-details">
                 <h2>{{ review.description }}</h2>

@@ -30,14 +30,18 @@ export class DashboardComponent {
   submitForm(): void {
     this.isSpinning = true;
     this.products = [];
-    const title = this.searchProductForm.get('title')!.value;
-    this.customerService.getProductsByTitle(title).subscribe((res) => {
-      res.forEach(element => {
-        element.processedImg = 'data:image/jpeg;base64,' + element.returnedImg;
-        this.products.push(element);
+    const title = this.searchProductForm.get('title')?.value;
+
+    if (title)
+      this.customerService.getProductsByTitle(title).subscribe((res) => {
+        res.forEach(element => {
+          element.processedImg = 'data:image/jpeg;base64,' + element.returnedImg;
+          this.products.push(element);
+        });
+        this.isSpinning = false;
       });
-      this.isSpinning = false;
-    });
+    else
+      this.getAllProducts();
   }
 
   getAllProducts(): void {
