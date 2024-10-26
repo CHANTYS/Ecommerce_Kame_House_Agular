@@ -22,7 +22,7 @@ export class DashboardComponent {
 
   ngOnInit(): void {
     this.searchProductForm = this.fb.group({
-      title: [null, [Validators.required]],
+      title: [undefined],
     });
     this.getAllProducts();
   }
