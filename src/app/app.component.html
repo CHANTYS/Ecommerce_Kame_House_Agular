@@ -1,37 +1,123 @@
-<div *ngIf="!isCustomerLoggedIn && !isAdminLoggedIn">
-    <mat-toolbar color="primary" class="navbar">
-        <span class="navbar-brand">E-Commerce</span>
-        <span class="spacer"></span>
-        <button mat-button routerLink="/order" routerLinkActive="active">Track Order</button>
-        <button mat-button routerLink="/register" routerLinkActive="active">Register</button>
-        <button mat-button routerLink="/login" routerLinkActive="active">Login</button>
-    </mat-toolbar>
-</div>
-<div *ngIf="isAdminLoggedIn">
-    <mat-toolbar color="primary" class="navbar">
-        <span class="navbar-brand">E-Commerce</span>
-        <span class="spacer"></span>
-        <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</button>
-        <button mat-button routerLink="/admin/analytics" routerLinkActive="active">Analytics</button>
-        <button mat-button routerLink="/admin/category" routerLinkActive="active">Category</button>
-        <button mat-button routerLink="/admin/product" routerLinkActive="active">Product</button>
-        <button mat-button routerLink="/admin/orders" routerLinkActive="active">Orders</button>
-        <button mat-button routerLink="/admin/post-coupon" routerLinkActive="active">Post Coupon</button>
-        <button mat-button routerLink="/admin/coupons" routerLinkActive="active">Coupons</button>
-        <button mat-button routerLinkActive="active" (click)="logout()">Logout</button>
+<mat-toolbar color="primary">
+    <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+        </button>
+    <h1>E-Commerce</h1>
+</mat-toolbar>
+  
 
-    </mat-toolbar>
-</div>
-<div *ngIf="isCustomerLoggedIn">
-    <mat-toolbar color="primary" class="navbar">
-        <span class="navbar-brand">E-Commerce</span>
-        <span class="spacer"></span>
-        <button mat-button routerLink="/customer/dashboard" routerLinkActive="active">Dashboard</button>
-        <button mat-button routerLink="/customer/cart" routerLinkActive="active">Cart</button>
-        <button mat-button routerLink="/customer/my_orders" routerLinkActive="active">Orders</button>
-        <button mat-button routerLink="/customer/wishlist" routerLinkActive="active">Wishlist</button>
-        <button mat-button routerLink="/customer/profile" routerLinkActive="active">Profile</button>
-        <button mat-button routerLinkActive="active" (click)="logout()">Logout</button>
-    </mat-toolbar>
-</div>
-<router-outlet></router-outlet>
+<mat-sidenav-container autosize>
+    <mat-sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="isMobile ? 'false' : 'true'">
+        <mat-nav-list *ngIf="!isCustomerLoggedIn && !isAdminLoggedIn">
+            <a mat-list-item routerLink="/order">
+                <span class="entry">
+                   <mat-icon>track_changes</mat-icon>
+                   <span *ngIf="!isCollapsed">Track Order</span>
+                </span>
+             </a>
+             <a mat-list-item routerLink="/register">
+                <span class="entry">
+                   <mat-icon>create</mat-icon>
+                   <span *ngIf="!isCollapsed">Register</span>
+                </span>
+             </a>
+             <a mat-list-item routerLink="/login">
+                <span class="entry">
+                   <mat-icon>login</mat-icon>
+                   <span *ngIf="!isCollapsed">Login</span>
+                </span>
+             </a>
+        </mat-nav-list>
+        <mat-nav-list *ngIf="isAdminLoggedIn">
+            <a mat-list-item routerLink="/admin/dashboard" routerLinkActive="active">
+                <span class="entry">
+                   <mat-icon>house</mat-icon>
+                   <span *ngIf="!isCollapsed">Home</span>
+                </span>
+            </a>
+            <a mat-list-item routerLink="/admin/analytics" routerLinkActive="active">
+                <span class="entry">
+                   <mat-icon>analytics</mat-icon>
+                   <span *ngIf="!isCollapsed">Analytics</span>
+                </span>
+            </a>
+            <a mat-list-item routerLink="/admin/category" routerLinkActive="active">
+                <span class="entry">
+                   <mat-icon>category</mat-icon>
+                   <span *ngIf="!isCollapsed">Category</span>
+                </span>
+            </a>
+            <a mat-list-item routerLink="/admin/product" routerLinkActive="active">
+                <span class="entry">
+                   <mat-icon>inventory</mat-icon>
+                   <span *ngIf="!isCollapsed">Product</span>
+                </span>
+            </a>
+            <a mat-list-item routerLink="/admin/orders" routerLinkActive="active">
+                <span class="entry">
+                   <mat-icon>reorder</mat-icon>
+                   <span *ngIf="!isCollapsed">Orders</span>
+                </span>
+            </a>
+            <a mat-list-item routerLink="/admin/post-coupon" routerLinkActive="active">
+                <span class="entry">
+                   <mat-icon>discount</mat-icon>
+                   <span *ngIf="!isCollapsed">Post Coupon</span>
+                </span>
+            </a>
+            <a mat-list-item routerLink="/admin/coupons" routerLinkActive="active">
+                <span class="entry">
+                   <mat-icon>discount</mat-icon>
+                   <span *ngIf="!isCollapsed">Coupons</span>
+                </span>
+            </a>
+            <a mat-list-item routerLinkActive="active" (click)="logout()">
+                <span class="entry">
+                   <mat-icon>logout</mat-icon>
+                   <span *ngIf="!isCollapsed">Logout</span>
+                </span>
+            </a>
+        </mat-nav-list>
+        <mat-nav-list *ngIf="isCustomerLoggedIn">
+            <a mat-list-item routerLink="/customer/dashboard" routerLinkActive="active">
+                <span class="entry">
+                   <mat-icon>house</mat-icon>
+                   <span *ngIf="!isCollapsed">Home</span>
+                </span>
+            </a>
+            <a mat-list-item routerLink="/customer/cart" routerLinkActive="active">
+                <span class="entry">
+                   <mat-icon>shopping_cart</mat-icon>
+                   <span *ngIf="!isCollapsed">Cart</span>
+                </span>
+            </a>
+            <a mat-list-item routerLink="/customer/my_orders" routerLinkActive="active">
+                <span class="entry">
+                   <mat-icon>reorder</mat-icon>
+                   <span *ngIf="!isCollapsed">Orders</span>
+                </span>
+            </a>
+            <a mat-list-item routerLink="/customer/wishlist" routerLinkActive="active">
+                <span class="entry">
+                   <mat-icon>favorite</mat-icon>
+                   <span *ngIf="!isCollapsed">Wish List</span>
+                </span>
+            </a>
+            <a mat-list-item routerLink="/customer/profile" routerLinkActive="active">
+                <span class="entry">
+                   <mat-icon>manage_accounts</mat-icon>
+                   <span *ngIf="!isCollapsed">Profile</span>
+                </span>
+            </a>
+            <a mat-list-item routerLinkActive="active" (click)="logout()">
+                <span class="entry">
+                   <mat-icon>logout</mat-icon>
+                   <span *ngIf="!isCollapsed">Logout</span>
+                </span>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
