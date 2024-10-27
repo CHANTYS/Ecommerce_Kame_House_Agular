@@ -39,11 +39,6 @@ export class OrderPlaceComponent {
                .create("wallet", "wallet_container", {
                   initialization: {
                     preferenceId: response.id,
-                  },
-                  customization: {
-                    texts: {
-                      valueProp: 'smart_option',
-                    },
                   }
                 });
       }
