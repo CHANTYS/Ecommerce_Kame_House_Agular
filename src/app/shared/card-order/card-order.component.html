@@ -1,0 +1,39 @@
+<div class="order-details-container" *ngIf="order">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Order Details</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="order-detail">
+                Tracking ID:
+                <strong>{{ order.trackingId }}</strong>
+            </div>
+            <div class="order-detail">
+                User Name:
+                <strong>{{ order.userName }}</strong>
+            </div>
+            <div class="order-detail">
+                Address:
+                <strong>{{ order.address }}</strong>
+            </div>
+            <div class="order-detail">
+                Amount:
+                <strong>{{ order.totalAmount | currency }}</strong>
+            </div>
+            <div class="order-detail">
+                Status:
+                <strong>{{ order.status }}</strong>
+            </div>
+            <div class="order-detail">
+                Date:
+                <strong>{{ order.date | date }}</strong>
+            </div>
+            
+            <br/><br/>
+
+            <button *ngIf="order.status === 'Delivered'" 
+                mat-raised-button color="primary" type="submit"
+                routerLink="/customer/review/{{order.id}}">Review</button>
+        </mat-card-content>
+    </mat-card>
+</div>

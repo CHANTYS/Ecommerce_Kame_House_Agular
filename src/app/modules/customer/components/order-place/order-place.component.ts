@@ -31,8 +31,8 @@ export class OrderPlaceComponent {
                   callbacks: {
                     onError: (error) => console.error(error),
                     onSubmit: () => {
-                      this.customerService.orderAddress = this.orderForm.get('address')!.value;
-                      this.customerService.orderAddressDescription = this.orderForm.get('orderDescription')?.value;
+                      sessionStorage.setItem('OrderAddress', this.orderForm.get('address')!.value);
+                      sessionStorage.setItem('OrderAddressDescription', this.orderForm.get('orderDescription')?.value);
                     }
                   }
                 }).then();
