@@ -11,9 +11,6 @@ const BASIC_URL = environment['BASIC_URL'];
 })
 export class CustomerService {
 
-  orderAddress: string;
-  orderAddressDescription;
-
   constructor(private http: HttpClient) { }
 
   getProductsByTitle(title: any): Observable<any> {

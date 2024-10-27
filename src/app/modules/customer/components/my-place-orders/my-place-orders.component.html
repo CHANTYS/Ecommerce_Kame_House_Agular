@@ -1,6 +1,9 @@
 <mat-spinner [diameter]="50" *ngIf="isSpinning" class="spinner"></mat-spinner>
 <ng-container *ngIf="!isSpinning">
-    <table mat-table #basicTable [dataSource]="MyOrders" class="mat-elevation-z8" >
+    <div *ngFor="let order of MyOrders">
+        <app-card-order [order]="order"></app-card-order>
+    </div>
+    <!-- <table mat-table #basicTable [dataSource]="MyOrders" class="mat-elevation-z8" >
 
         <ng-container matColumnDef="trackingId">
             <mat-header-cell *matHeaderCellDef style="font-weight: bolder; color: #003973;">Tracking
@@ -50,5 +53,5 @@
             *matHeaderRowDef="['trackingId', 'totalAmount', 'description',  'address', 'date','status','action']"></mat-header-row>
         <mat-row
             *matRowDef="let myOrder; columns: ['trackingId', 'totalAmount', 'description',  'address', 'date','status','action']"></mat-row>
-    </table>
+    </table> -->
 </ng-container>

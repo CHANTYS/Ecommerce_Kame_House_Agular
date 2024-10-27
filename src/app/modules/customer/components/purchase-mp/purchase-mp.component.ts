@@ -20,8 +20,8 @@ export class PurchaseMPComponent {
       if (status === 'approved') {
         this.router.navigateByUrl("/customer/my_orders").then(() => {
           const order = {
-            orderAddress: this.customerService.orderAddress,
-            orderAddressDescription: this.customerService.orderAddressDescription,
+            address: sessionStorage.getItem('OrderAddress'),
+            orderDescription: sessionStorage.getItem('OrderAddressDescription'),
             paymentId: paymentId
           }
           
@@ -31,6 +31,9 @@ export class PurchaseMPComponent {
             } else {
               this.snackBar.open("Something went wrong", "Close", { duration: 5000 })
             }
+
+            sessionStorage.removeItem('OrderAddress'),
+            sessionStorage.removeItem('OrderAddressDescription')
           });
         });
       }
