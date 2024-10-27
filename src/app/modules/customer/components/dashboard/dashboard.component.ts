@@ -56,7 +56,8 @@ export class DashboardComponent {
     });
   }
 
-  addToCart(productId: any) {
+  addToCart(event: Event,productId: any) {
+    event.stopPropagation();
     this.customerService.addToCart(productId).subscribe((res) => {
       console.log(res);
       if (res.id != null) {
