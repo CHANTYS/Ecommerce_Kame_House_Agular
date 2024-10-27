@@ -47,6 +47,7 @@ export class CartItemsComponent {
 
   getCart() {
     this.cartItems = [];
+    this.productDtos = [];
     this.customerService.getCartByUserId().subscribe((res) => {
       if (res) {
         console.log(res);

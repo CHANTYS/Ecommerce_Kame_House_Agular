@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   BASIC_URL: "http://localhost:8080/"
+  // BASIC_URL: "http://192.168.1.13:8080/"
+
 };
 
 /*
