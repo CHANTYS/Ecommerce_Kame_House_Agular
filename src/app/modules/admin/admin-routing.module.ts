@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'coupons', component: CouponsComponent, canActivate: [AdminGuard] },
   { path: 'faq/:productId', component: PostProductFaqComponent, canActivate: [AdminGuard] },
   { path: 'analytics', component: AnalyticsComponent, canActivate: [AdminGuard] },
+  { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
 @NgModule({

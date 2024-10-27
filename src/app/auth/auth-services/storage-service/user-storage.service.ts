@@ -47,19 +47,19 @@ export class UserStorageService {
   }
 
   static isAdminLoggedIn(): boolean {
-    if ( this.getToken() === null){
+    if (!this.getToken())
       return false;
-    }
+
     const role: string = this.getUserRole();
-    return role == 'ADMIN';
+    return role === 'ADMIN';
   }
 
   static isCustomerLoggedIn(): boolean {
-    if ( this.getToken() === null){
+    if (!this.getToken())
       return false;
-    }
+
     const role: string = this.getUserRole();
-    return role == 'CUSTOMER';
+    return role ===  'CUSTOMER';
   }
 
 

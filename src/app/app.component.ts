@@ -24,9 +24,19 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.router.events.subscribe(event => {
-      if (event.constructor.name === "NavigationEnd") {
+      const eventAny = event as any;
+      if (eventAny.constructor.name === "NavigationEnd") {
         this.isCustomerLoggedIn = UserStorageService.isCustomerLoggedIn();
         this.isAdminLoggedIn = UserStorageService.isAdminLoggedIn();
+        
+        if (eventAny.url === '/') {
+          if (this.isAdminLoggedIn)
+            this.router.navigate(['/admin/dashboard']);
+          else if (this.isCustomerLoggedIn)
+            this.router.navigate(['/customer/dashboard']);
+          else
+            this.router.navigate(['login']);
+        }
       }
     });
 
@@ -37,13 +47,6 @@ export class AppComponent {
         this.isMobile = false;
       }
     });
-
-    // if (this.isAdminLoggedIn)
-    //   this.router.navigate(['/admin/dashboard']);
-    // else if (this.isCustomerLoggedIn)
-    //   this.router.navigate(['/customer/dashboard']);
-    // else
-    //   this.router.navigate(['login']);
   }
 
   logout() {

@@ -4,6 +4,7 @@ import { LoginComponent } from './auth/auth-components/login/login.component';
 import { SignupComponent } from './auth/auth-components/signup/signup.component';
 import { NoAuthGuard } from './auth/auth-guards/noAuth/no-auth.guard';
 import { TrackOrderComponent } from './auth/auth-components/track-order/track-order.component';
+import { UserStorageService } from './auth/auth-services/storage-service/user-storage.service';
 
 const routes: Routes = [
   { path: 'register', component: SignupComponent, canActivate: [NoAuthGuard] },

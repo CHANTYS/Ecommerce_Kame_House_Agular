@@ -12,7 +12,7 @@ import { ViewCompleteProductDetailComponent } from './components/view-complete-p
 import { ViewOrderedProductsForReviewComponent } from './components/view-ordered-products-for-review/view-ordered-products-for-review.component';
 import { GetMyWishlistComponent } from './components/get-my-wishlist/get-my-wishlist.component';
 import { PurchaseMPComponent } from './components/purchase-mp/purchase-mp.component';
-
+      
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [CustomerGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [CustomerGuard] },
@@ -24,7 +24,8 @@ const routes: Routes = [
   { path: 'review/:productId', component: ReviewOrderedProductComponent, canActivate: [CustomerGuard] },
   { path: 'product/:productId', component: ViewCompleteProductDetailComponent, canActivate: [CustomerGuard] },
   { path: 'wishlist', component: GetMyWishlistComponent, canActivate: [CustomerGuard] },
-  { path: 'purchase-mp', component: PurchaseMPComponent, canActivate: [CustomerGuard] }
+  { path: 'purchase-mp', component: PurchaseMPComponent, canActivate: [CustomerGuard] },
+  { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
 @NgModule({
