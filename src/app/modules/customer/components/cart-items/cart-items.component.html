@@ -21,12 +21,12 @@
                             <button mat-icon-button (click)="increaseQuantity(item.id)">
                                 <mat-icon>add_circle_outline</mat-icon>
                             </button>
+                            <button mat-icon-button class="clear-button" (click)="removeProductToCart(item.id)">
+                                <mat-icon>clear</mat-icon>
+                            </button>
                         </div>
                     </div>
                 </div>
-                <button mat-icon-button class="clear-button" (click)="removeProductToCart(item.id)">
-                    <mat-icon>clear</mat-icon>
-                </button>
             </div>
         </div>
         <div class="total-price">
