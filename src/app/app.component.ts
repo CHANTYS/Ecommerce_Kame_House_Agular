@@ -38,12 +38,12 @@ export class AppComponent {
       }
     });
 
-    if (this.isAdminLoggedIn)
-      this.router.navigate(['/admin/dashboard']);
-    else if (this.isCustomerLoggedIn)
-      this.router.navigate(['/customer/dashboard']);
-    else
-      this.router.navigate(['login']);
+    // if (this.isAdminLoggedIn)
+    //   this.router.navigate(['/admin/dashboard']);
+    // else if (this.isCustomerLoggedIn)
+    //   this.router.navigate(['/customer/dashboard']);
+    // else
+    //   this.router.navigate(['login']);
   }
 
   logout() {

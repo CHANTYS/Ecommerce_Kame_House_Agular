@@ -22,14 +22,7 @@ export class OrderPlaceComponent {
     private customerService: CustomerService,
     private router: Router,
     public dialog: MatDialog
-  ) { }
-
-  ngOnInit(): void {
-    this.orderForm = this.fb.group({
-      address: [null, [Validators.required]],
-      orderDescription: [null],
-    });
-
+  ) { 
     this.customerService.createPreference().subscribe({
       next: (response) => {
         console.log(response);
@@ -39,10 +32,27 @@ export class OrderPlaceComponent {
                .create("wallet", "wallet_container", {
                   initialization: {
                     preferenceId: response.id,
+                    redirectMode: 'modal'
+                  },
+                  callbacks: {
+                    onError: (error) => console.error(error),
+                    onReady: (x) => {
+                      console.log(x);
+                    },
+                    onSubmit: (x) => {
+                      console.log(x);
+                    }
                   }
-                });
+                }).then();
       }
-    })
+    });
+  }
+
+  ngOnInit(): void {
+    this.orderForm = this.fb.group({
+      address: [null, [Validators.required]],
+      orderDescription: [null],
+    });
   }
 
   placeOrder() {

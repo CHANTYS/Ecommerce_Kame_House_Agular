@@ -11,6 +11,7 @@ import { ReviewOrderedProductComponent } from './components/review-ordered-produ
 import { ViewCompleteProductDetailComponent } from './components/view-complete-product-detail/view-complete-product-detail.component';
 import { ViewOrderedProductsForReviewComponent } from './components/view-ordered-products-for-review/view-ordered-products-for-review.component';
 import { GetMyWishlistComponent } from './components/get-my-wishlist/get-my-wishlist.component';
+import { PurchaseMPComponent } from './components/purchase-mp/purchase-mp.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [CustomerGuard] },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'review/:productId', component: ReviewOrderedProductComponent, canActivate: [CustomerGuard] },
   { path: 'product/:productId', component: ViewCompleteProductDetailComponent, canActivate: [CustomerGuard] },
   { path: 'wishlist', component: GetMyWishlistComponent, canActivate: [CustomerGuard] },
+  { path: 'purchase-mp', component: PurchaseMPComponent, canActivate: [CustomerGuard] }
 ];
 
 @NgModule({
