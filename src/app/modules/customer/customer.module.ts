@@ -14,6 +14,7 @@ import { ReviewOrderedProductComponent } from './components/review-ordered-produ
 import { ViewCompleteProductDetailComponent } from './components/view-complete-product-detail/view-complete-product-detail.component';
 import { ViewOrderedProductsForReviewComponent } from './components/view-ordered-products-for-review/view-ordered-products-for-review.component';
 import { GetMyWishlistComponent } from './components/get-my-wishlist/get-my-wishlist.component';
+import { PurchaseMPComponent } from './components/purchase-mp/purchase-mp.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { GetMyWishlistComponent } from './components/get-my-wishlist/get-my-wish
     ViewOrderedProductsForReviewComponent,
     ReviewOrderedProductComponent,
     ViewCompleteProductDetailComponent,
-    GetMyWishlistComponent
+    GetMyWishlistComponent,
+    PurchaseMPComponent
     ],
   imports: [
     CommonModule,

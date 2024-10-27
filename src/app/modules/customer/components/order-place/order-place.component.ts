@@ -11,25 +11,12 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./order-place.component.scss']
 })
 export class OrderPlaceComponent {
-
   orderForm!: FormGroup;
-  Payment: string[] = ["Cash On Delivery"];
-
   mp: any;
   constructor(
     private fb: FormBuilder,
-    private snackBar: MatSnackBar,
     private customerService: CustomerService,
-    private router: Router,
-    public dialog: MatDialog
-  ) { }
-
-  ngOnInit(): void {
-    this.orderForm = this.fb.group({
-      address: [null, [Validators.required]],
-      orderDescription: [null],
-    });
-
+    public dialog: MatDialog) { 
     this.customerService.createPreference().subscribe({
       next: (response) => {
         console.log(response);
@@ -39,24 +26,26 @@ export class OrderPlaceComponent {
                .create("wallet", "wallet_container", {
                   initialization: {
                     preferenceId: response.id,
+                    redirectMode: 'modal'
+                  },
+                  callbacks: {
+                    onError: (error) => console.error(error),
+                    onSubmit: () => {
+                      this.customerService.orderAddress = this.orderForm.get('address')!.value;
+                      this.customerService.orderAddressDescription = this.orderForm.get('orderDescription')?.value;
+                    }
                   }
-                });
-      }
-    })
-  }
-
-  placeOrder() {
-    this.customerService.placeOrder(this.orderForm.value).subscribe((res) => {
-      if (res.id != null) {
-        this.snackBar.open("Order placed successfully", "Close", { duration: 5000 })
-        this.closeForm();
-        this.router.navigateByUrl("/customer/my_orders");
-      } else {
-        this.snackBar.open("Something went wrong", "Close", { duration: 5000 })
+                }).then();
       }
     });
   }
 
+  ngOnInit(): void {
+    this.orderForm = this.fb.group({
+      address: [null, [Validators.required]],
+      orderDescription: [null],
+    });
+  }
 
   closeForm() {
     this.dialog.closeAll();

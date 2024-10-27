@@ -86,3 +86,8 @@ mat-error {
 mat-card-header{
     justify-content: flex-end /* for right*/
 }
+
+.mp-disable {
+    pointer-events: none;
+    opacity: 0.5; 
+}
