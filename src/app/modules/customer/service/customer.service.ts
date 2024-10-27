@@ -192,6 +192,16 @@ export class CustomerService {
     );
   }
 
+  createPreference() {
+    const userId = UserStorageService.getUserId();
+    return this.http.get(`${BASIC_URL}api/customer/createPreference/${userId}`, {
+      headers: this.createAuthorizationHeader(),
+    }).pipe(
+      tap((_) => this.log('Preference create')),
+      catchError(this.handleError('Error on create preference'))
+    );
+  }
+
   private createAuthorizationHeader(): HttpHeaders {
     return new HttpHeaders().set(
       'Authorization',

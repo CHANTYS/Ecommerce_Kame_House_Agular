@@ -15,6 +15,7 @@ export class OrderPlaceComponent {
   orderForm!: FormGroup;
   Payment: string[] = ["Cash On Delivery"];
 
+  mp: any;
   constructor(
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
@@ -28,6 +29,25 @@ export class OrderPlaceComponent {
       address: [null, [Validators.required]],
       orderDescription: [null],
     });
+
+    this.customerService.createPreference().subscribe({
+      next: (response) => {
+        console.log(response);
+        const thatWindow = window as any;
+        this.mp = new thatWindow.MercadoPago('TEST-d2b23f98-6a73-41d9-b8b8-1d530a0a5142');
+        this.mp.bricks()
+               .create("wallet", "wallet_container", {
+                  initialization: {
+                    preferenceId: response.id,
+                  },
+                  customization: {
+                    texts: {
+                      valueProp: 'smart_option',
+                    },
+                  }
+                });
+      }
+    })
   }
 
   placeOrder() {
