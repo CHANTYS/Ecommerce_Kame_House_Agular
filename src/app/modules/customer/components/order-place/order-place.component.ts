@@ -34,7 +34,7 @@ export class OrderPlaceComponent {
       next: (response) => {
         console.log(response);
         const thatWindow = window as any;
-        this.mp = new thatWindow.MercadoPago('APP_USR-a18d98bd-eb32-48fc-9b25-60ef5353545d');
+        this.mp = new thatWindow.MercadoPago('APP_USR-cf456223-1042-45e4-83bb-a7d646adcc35');
         this.mp.bricks()
                .create("wallet", "wallet_container", {
                   initialization: {
