@@ -61,7 +61,7 @@ mat-error {
 /* Style the button row */
 .button-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-top: 24px;
 }
@@ -83,16 +83,6 @@ mat-error {
     background-color: #2c387e;
 }
 
-/* Style the close button */
-.close-button {
-    flex: 0.3;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    font-size: 18px;
-    padding: 12px 24px;
-}
-
-.close-button:hover {
-    color: #2c387e;
+mat-card-header{
+    justify-content: flex-end /* for right*/
 }
