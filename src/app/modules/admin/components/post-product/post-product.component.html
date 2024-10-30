@@ -6,14 +6,21 @@
         <div class="file-upload-container">
             <label class="file-upload-label">
                 <span>Select a File</span>
-                <input type="file" accept=".jpeg, .jpg" id="fileInput" (change)="onFileSelected($event)" hidden>
+                <input type="file" accept=".jpeg,.jpg,.glb,.gltf" id="fileInput" (change)="onFileSelected($event)" hidden>
                 <mat-icon>attach_file</mat-icon>
             </label>
 
-            <div *ngIf="selectedFile" class="image-preview">
+            <div *ngIf="selectedFile?.name?.includes('.jpeg') || selectedFile?.name?.includes('.jpg')" class="image-preview">
                 <div class="circle-image">
                     <img [src]="imagePreview" alt="Selected Image" class="preview-image">
                 </div>
+            </div>
+            <div *ngIf="selectedFile?.name?.includes('.glb') || selectedFile?.name?.includes('.gltf')" class="image-preview">
+                <model-viewer
+                    id="model-viewer"
+                    ar 
+                    shadow-intensity="1"
+                    camera-controls touch-action="pan-y"></model-viewer>
             </div>
         </div>
 

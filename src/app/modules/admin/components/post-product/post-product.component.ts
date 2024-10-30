@@ -1,4 +1,4 @@
-import { Component, VERSION } from '@angular/core';
+import { Component, ElementRef, VERSION, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -32,7 +32,12 @@ export class PostProductComponent {
   previewImage() {
     const reader = new FileReader();
     reader.onload = () => {
-      this.imagePreview = reader.result;
+      if (this.selectedFile?.name?.includes('.jpeg') || this.selectedFile?.name?.includes('.jpg'))
+        this.imagePreview = reader.result;
+      else if(this.selectedFile?.name?.includes('.gltf') || this.selectedFile?.name?.includes('.glb')) {
+        const modelViewer = document.querySelector("#model-viewer") as any;
+        modelViewer.src = reader.result;
+      }
     };
     reader.readAsDataURL(this.selectedFile);
   }

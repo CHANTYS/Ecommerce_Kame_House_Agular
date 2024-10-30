@@ -10,9 +10,16 @@
 
 
 <div class="product-list">
-    <mat-card class="product-card" *ngFor="let product of products" routerLink="/customer/product/{{product.id}}">
+    <mat-card class="product-card" *ngFor="let product of products; let i = index" routerLink="/customer/product/{{product.id}}">
         <div class="product-image">
-            <img [src]="product.processedImg" alt="product-image">
+            <img *ngIf="product?.fileName?.includes('.jpeg') || product?.fileName?.includes('.jpg')" [src]="product.processedImg" alt="product-image">
+            <div *ngIf="product?.fileName?.includes('.glb') || product?.fileName?.includes('.gltf')" class="image-preview">
+                <model-viewer
+                    id="model-viewer-{{i}}"
+                    ar 
+                    shadow-intensity="1"
+                    camera-controls touch-action="pan-y"></model-viewer>
+            </div>
         </div>
         <div class="product-details">
             <h2 class="product-name">{{ product.name }}</h2>

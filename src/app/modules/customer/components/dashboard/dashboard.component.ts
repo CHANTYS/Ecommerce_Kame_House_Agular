@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerService } from '../../service/customer.service';
@@ -8,18 +8,32 @@ import { CustomerService } from '../../service/customer.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements DoCheck {
 
   products: any[] = [];
   searchProductForm!: FormGroup;
   isSpinning = false;
+  readyLoadARModels = false;
 
   constructor(
     private customerService: CustomerService,
     private snackBar: MatSnackBar,
     private fb: FormBuilder
   ) { }
+  ngDoCheck(): void {
+    if (!this.readyLoadARModels)
+      return;
 
+    this.products.forEach((product, i) => {
+      if (product?.fileName?.includes('.glb') || product?.fileName?.includes('.gltf')) {
+        const modelViewer = document.querySelector("#model-viewer-" + i) as any;
+        if (modelViewer) {
+          modelViewer.src = 'data:text/plain;charset=utf-8;base64,' + product.returnedImg;
+          this.readyLoadARModels = false;
+        }
+      }
+    });
+  }
   ngOnInit(): void {
     this.searchProductForm = this.fb.group({
       title: [undefined],
@@ -53,6 +67,8 @@ export class DashboardComponent {
         this.products.push(element);
       });
       this.isSpinning = false;
+      this.readyLoadARModels = true;
+
     });
   }
 

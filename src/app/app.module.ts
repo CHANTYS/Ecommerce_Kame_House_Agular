@@ -15,7 +15,7 @@ import { TrackOrderComponent } from './auth/auth-components/track-order/track-or
     AppComponent,
     SignupComponent,
     LoginComponent,
-    TrackOrderComponent
+    TrackOrderComponent,
   ],
   imports: [
     BrowserModule,
