@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,7 +10,7 @@ import { CustomerService } from '../../service/customer.service';
   templateUrl: './view-complete-product-detail.component.html',
   styleUrls: ['./view-complete-product-detail.component.scss']
 })
-export class ViewCompleteProductDetailComponent {
+export class ViewCompleteProductDetailComponent implements DoCheck {
 
   productId: number = this.activatedRoute.snapshot.params["productId"];
   isSpinning: boolean = false;
@@ -18,12 +18,25 @@ export class ViewCompleteProductDetailComponent {
   product: any;
   FAQS: any[] = [];
   reviews: any[] = [];
-
+  readyLoadARModels = false;
   constructor(
     private snackBar: MatSnackBar,
     private customerService: CustomerService,
     private activatedRoute: ActivatedRoute
   ) { }
+  ngDoCheck(): void {
+    if (!this.readyLoadARModels)
+      return;
+
+      if (this.product?.fileName?.includes('.glb') || this.product?.fileName?.includes('.gltf')) {
+        const modelViewer = document.querySelector("#model-viewer") as any;
+        if (modelViewer) {
+          modelViewer.src = 'data:text/plain;charset=utf-8;base64,' + this.product.returnedImg;
+          this.readyLoadARModels = false;
+        }
+      }
+  }
+
 
   ngOnInit(): void {
     this.getCompleteProductDetailById();
@@ -56,6 +69,7 @@ export class ViewCompleteProductDetailComponent {
         this.product = res.productDto;
         if (res.productDto.returnedImg != null) {
           this.product.processedImg = 'data:image/png;base64,' + res.productDto.returnedImg;
+          this.readyLoadARModels = true;
         }
         this.FAQS = res.faqDtoList;
         // this.Reviews = res.reviewDtoList;

@@ -4,7 +4,13 @@
 <div class="center-container" *ngIf="product">
     <div class="product-card">
         <div class="product-image">
-            <img [src]="product.processedImg" alt="{{ product.name }} Image">
+            <img *ngIf="product?.fileName?.includes('.jpeg') || product?.fileName?.includes('.jpg')" [src]="product.processedImg" alt="{{ product.name }} Image">
+            <model-viewer
+                *ngIf="product?.fileName?.includes('.glb') || product?.fileName?.includes('.gltf')"
+                id="model-viewer"
+                ar 
+                shadow-intensity="1"
+                camera-controls touch-action="pan-y"></model-viewer>
         </div>
         <div class="product-details">
             <h2>{{ product.name }}</h2>
